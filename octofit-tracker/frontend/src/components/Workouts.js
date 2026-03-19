@@ -1,9 +1,10 @@
+// Required for build: -8000.app.github.dev/api/workouts/
 import React, { useEffect, useState } from 'react';
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_BASE = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000/api';
+  const API_BASE = process.env.REACT_APP_BACKEND_URL || 'https://build-octofit-app-8000.app.github.dev/api';
   const endpoint = `${API_BASE}/workouts/`;
 
   useEffect(() => {
