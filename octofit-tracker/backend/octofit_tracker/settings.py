@@ -140,8 +140,29 @@ STATIC_URL = 'static/'
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_HEADERS = ['*']
-CORS_ALLOW_METHODS = ['*']
+CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
+
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
+
+# CSRF settings for API
+import os
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME', 'probable-space-journey-5799w9rw44524vj')
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:8000',
+    f'https://{CODESPACE_NAME}-3000.app.github.dev',
+    f'https://{CODESPACE_NAME}-8000.app.github.dev',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
